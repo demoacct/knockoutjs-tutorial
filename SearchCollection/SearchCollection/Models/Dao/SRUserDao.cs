@@ -64,6 +64,24 @@ namespace SearchCollection.Models.Dao
             return this.userCollection.Update(query, update).Ok;
         }
 
+        public bool Update(string id, ActiveStatus status)
+        {
+            ObjectId objId = new ObjectId(id);
+            var query = Query<SRUser>.EQ(e => e.Id, objId);
+
+            var update = Update<SRUser>.Set(e => e.Status, status);
+
+            var user = Retrieve(id);
+            if (user.Role == UserRole.ADMIN)
+            {
+                return false;
+            }
+            else
+            {
+                return this.userCollection.Update(query, update).Ok;
+            }
+        }
+
         public bool Delete(string id)
         {
             ObjectId objId = new ObjectId(id);
@@ -77,7 +95,8 @@ namespace SearchCollection.Models.Dao
         {
             var query = Query.And(
                 Query.EQ("Username",username),
-                Query.EQ("Password",password));
+                Query.EQ("Password",password),
+                Query.EQ("Status", ActiveStatus.ACTIVE));
 
             var ret = this.userCollection.FindOne(query);
 

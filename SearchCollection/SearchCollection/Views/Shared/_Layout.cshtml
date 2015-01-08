@@ -47,18 +47,27 @@
             @if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("searchcollection"))
             {
                 <li role="presentation" style="border-top-left-radius:15px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
             }
             else if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("login") ||
             new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("register"))
             {
                 <li role="presentation" style="border-top-left-radius:15px;box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+            }
+            else if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("sruser"))
+            {
+                <li role="presentation" style="border-top-left-radius:15px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","home")">Home</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
             }
             else
             {
                 <li role="presentation" style="border-top-left-radius:15px;box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
             }
         </ul>
         @RenderBody()

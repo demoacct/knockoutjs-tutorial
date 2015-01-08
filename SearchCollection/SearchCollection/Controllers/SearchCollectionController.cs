@@ -40,6 +40,27 @@ namespace SearchCollection.Controllers
             }
         }
 
+        public JsonResult Users()
+        {
+            SRUser user = (SRUser)Session["SRUser"];
+
+            if (user != null)
+            {
+                if (user.Role == UserRole.ADMIN)
+                {
+                    return Json(this.userDao.Retrieve(), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new List<Topic>() { }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new List<Topic>() { }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(List<Topic> model)
@@ -155,7 +176,74 @@ namespace SearchCollection.Controllers
         {
             Session["SRUser"] = null;
             Session.Clear();
-            return RedirectToAction("index","home");
+            return RedirectToAction("login","searchcollection");
+        }
+
+        public ActionResult SRUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deactivate(string id)
+        {
+            try
+            {
+                SRUser user = (SRUser)Session["SRUser"];
+
+                if (user != null)
+                {
+                    if (user.Role == UserRole.ADMIN)
+                    {
+                        return Json(userDao.Update(id,ActiveStatus.INACTIVE), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Activate(string id)
+        {
+            try
+            {
+                SRUser user = (SRUser)Session["SRUser"];
+
+                if (user != null)
+                {
+                    if (user.Role == UserRole.ADMIN)
+                    {
+                        return Json(userDao.Update(id,ActiveStatus.ACTIVE), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
     }
 }

@@ -212,6 +212,7 @@
     <Content Include="Scripts\Custom\ViewModels\login-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\register-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\sruser-viewmodel.js" />
+    <Content Include="Scripts\Custom\ViewModels\srusers-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\topic-dao-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\topic-viewmodel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -271,6 +272,8 @@
     <Content Include="Views\Shared\_Topics.cshtml" />
     <Content Include="Views\SearchCollection\Login.cshtml" />
     <Content Include="Views\SearchCollection\Register.cshtml" />
+    <Content Include="Views\Shared\_Users.cshtml" />
+    <Content Include="Views\SearchCollection\SRUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
