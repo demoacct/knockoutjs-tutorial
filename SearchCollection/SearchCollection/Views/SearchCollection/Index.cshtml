@@ -1,6 +1,10 @@
 ﻿@Html.AntiForgeryToken()
-<div class="panel-body">
-    @Html.Partial("_Topics")
+<div class="jumbotron" style="box-shadow:-1px 3px 5px #1046a7;background-image: url('http://www.toxbank.net/sites/default/files/styles/full_post/public/Text-search_2.jpg?itok=dk78UhdN')">
+    <div class="panel">
+        <div class="panel-body">
+            @Html.Partial("_Topics")
+        </div>
+    </div>
 </div>
 
 @section Scripts{
@@ -14,6 +18,5 @@
         $(document).ready(function () {
         });
     </script>
-
 }
 
