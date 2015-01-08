@@ -1,0 +1,47 @@
+﻿@Html.AntiForgeryToken()
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-lg-offset-4 col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        User Registration
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div>
+                            <input data-bind="value: FirstName" placeholder="First Name" type="text" class="form-control" />
+                        </div>
+                        <div>
+                            <input data-bind="value: LastName" placeholder="Last Name" type="text" class="form-control" />
+                        </div>
+                        <div>
+                            <input data-bind="value: Email" placeholder="Email" type="email" class="form-control" />
+                        </div>
+                        <br />
+                        <div>
+                            <input data-bind="value: Username" placeholder="Username" type="text" class="form-control" />
+                        </div>
+                        <div>
+                            <input data-bind="value: Password" placeholder="Password" type="password" class="form-control" />
+                        </div>
+                        <div>
+                            <input data-bind="value: ConfirmPassword" placeholder="Confirm Password" type="password" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <input data-bind="click: Register" type="button" value="Sign In" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/knockout-3.2.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/Custom/ViewModels/account-viewmodel.js"></script>
+}

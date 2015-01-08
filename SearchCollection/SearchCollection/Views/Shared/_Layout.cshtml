@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Ranger</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <div class="nav navbar-fixed-top">
+        @{
+            var user = ((SearchCollection.Models.SRUser)Session["SRUser"]);
+        }
+
+        @if (user != null)
+        {
+
+            <ul class="nav navbar-link navbar-left">
+                <li><a href="javascript:void(0);"><u>@user.FirstName @user.LastName - <small>@user.Email</small></u></a></li>
+            </ul>
+        }
+        <ul class="nav navbar-inverse  navbar-right">
+            @if (((SearchCollection.Models.SRUser)Session["SRUser"]) == null)
+            {
+                <li role="presentation"><a href="@Url.Action("login","searchcollection")">Login</a></li>
+            }
+            else
+            {
+                <li role="presentation"><a href="@Url.Action("logout","searchcollection")">Logout</a></li>
+            }
+        </ul>
+
+        @if (@user == null)
+        {
+            <ul class="nav navbar-inverse navbar-right">
+                <li role="presentation"><a href="@Url.Action("register","searchcollection")">Register</a></li>
+            </ul>
+        }
+        
+    </div>
+    <div class="container body-content">
+        <div class="page-header">
+            <img src="http://www.sansofts.co.in/s-photo/banner-inner.jpg" />
+        </div>
+        <ul class="nav nav-pills">
+            @if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("searchcollection"))
+            {
+                <li role="presentation"><a href="@Url.Action("index","home")">Home</a></li>
+                <li role="presentation" class="active"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+            }
+            else if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("login") ||
+            new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("register"))
+            {
+                <li role="presentation"><a href="@Url.Action("index","home")">Home</a></li>
+                <li role="presentation"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+            }
+            else
+            {
+                <li role="presentation" class="active"><a href="@Url.Action("index","home")">Home</a></li>
+                <li role="presentation"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+            }
+        </ul>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Search Ranger</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
