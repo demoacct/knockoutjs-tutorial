@@ -72,5 +72,16 @@ namespace SearchCollection.Models.Dao
 
             return this.userCollection.Remove(query).Ok;
         }
+
+        public SRUser Login(string username, string password)
+        {
+            var query = Query.And(
+                Query.EQ("Username",username),
+                Query.EQ("Password",password));
+
+            var ret = this.userCollection.FindOne(query);
+
+            return ret;
+        }
     }
 }

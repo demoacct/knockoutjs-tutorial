@@ -21,7 +21,23 @@ namespace SearchCollection.Controllers
 
         public JsonResult Topics()
         {
-            return Json(this.topicDao.Retrieve(), JsonRequestBehavior.AllowGet);
+            SRUser user = (SRUser)Session["SRUser"];
+
+            if (user != null)
+            {
+                if (user.Role != UserRole.ADMIN)
+                {
+                    return Json(this.topicDao.Retrieve().Where(a => a.CreatedBy == user.Id).ToList(), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(this.topicDao.Retrieve().ToList(), JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new List<Topic>() { }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
@@ -33,6 +49,8 @@ namespace SearchCollection.Controllers
             {
                 foreach (var a in model)
                 {
+                    a.CreatedBy = ((SRUser)Session["SRUser"]).Id;
+
                     if (!topicDao.Create(a))
                     {
                         ret = false;
@@ -101,6 +119,31 @@ namespace SearchCollection.Controllers
                 }
 
                 return Json(registered, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string model)
+        {
+            try
+            {
+                SRUser loginUserData = Newtonsoft.Json.JsonConvert.DeserializeObject<SRUser>(model);
+                SRUser user = userDao.Login(loginUserData.Username, loginUserData.Password);
+
+                if (user != null)
+                {
+                    Session["SRUser"] = user;
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception e)
             {

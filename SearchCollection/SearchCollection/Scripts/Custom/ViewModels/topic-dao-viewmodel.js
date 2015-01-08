@@ -38,8 +38,9 @@
                 var DateCreatedFormatted = v.DateCreatedFormatted;
                 var Enable = v.Enable;
                 var Link = v.Link;
+                var User = v.User;
 
-                self.Topics.push(new TopicViewModel(Id, IdStr, Title, Description, DateCreated, DateCreatedFormatted, Enable, Link));
+                self.Topics.push(new TopicViewModel(Id, IdStr, Title, Description, DateCreated, DateCreatedFormatted, Enable, Link, User));
 
             });
 

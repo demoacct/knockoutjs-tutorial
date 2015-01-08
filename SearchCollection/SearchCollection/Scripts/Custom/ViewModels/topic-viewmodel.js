@@ -1,5 +1,5 @@
 ﻿
-    function TopicViewModel(Id, IdStr, Title, Description, DateCreated, DateCreatedFormatted, Enable, Link) {
+    function TopicViewModel(Id, IdStr, Title, Description, DateCreated, DateCreatedFormatted, Enable, Link, User) {
 
         var self = this;
 
@@ -12,4 +12,5 @@
         self.Enable = ko.observable(Enable);
         self.Link = ko.observable(Link);
         self.Url = ko.observable(Link);//ko.observable("/searchcollection/topic/" + self.IdStr());
+        self.User = ko.observable(User);
     }

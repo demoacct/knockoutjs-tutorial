@@ -209,7 +209,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Custom\ViewModels\account-viewmodel.js" />
+    <Content Include="Scripts\Custom\ViewModels\login-viewmodel.js" />
+    <Content Include="Scripts\Custom\ViewModels\register-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\sruser-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\topic-dao-viewmodel.js" />
     <Content Include="Scripts\Custom\ViewModels\topic-viewmodel.js" />

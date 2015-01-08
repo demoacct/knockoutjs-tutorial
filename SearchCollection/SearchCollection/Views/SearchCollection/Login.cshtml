@@ -1,4 +1,5 @@
-﻿<div class="jumbotron">
+﻿@Html.AntiForgeryToken()
+<div class="jumbotron">
     <div class="row">
         <div class="col-lg-offset-4 col-md-4">
             <div class="panel">
@@ -10,14 +11,14 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <div>
-                            <input placeholder="Username" type="text" class="form-control" />
+                            <input data-bind="value: Username" placeholder="Username" type="text" class="form-control" />
                         </div>
                         <div>
-                            <input placeholder="Password" type="password" class="form-control" />
+                            <input data-bind="value: Password" placeholder="Password" type="password" class="form-control" />
                         </div>
                     </div>
                     <div class="pull-right">
-                        <input type="button" value="Sign In" class="btn btn-info" />
+                        <input data-bind="click: Login" type="button" value="Sign In" class="btn btn-info" />
                     </div>
                     <div class="pull-left h6">
                         <a href="@Url.Action("register","searchcollection")">Register</a>
@@ -27,3 +28,10 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+    <script src="~/Scripts/knockout-3.2.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/Custom/ViewModels/login-viewmodel.js"></script>
+}

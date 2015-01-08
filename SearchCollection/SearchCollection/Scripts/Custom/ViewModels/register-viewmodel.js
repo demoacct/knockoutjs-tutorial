@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    function AccountViewModel() {
+    function RegisterViewModel() {
 
         var self = this;
 
@@ -29,7 +29,7 @@
 
                 if (result) {
                     alert("Congratulations! You are successfully registered!")
-                    window.location.href = "/";
+                    location.href = "/";
                 }
 
             });
@@ -38,7 +38,7 @@
 
     }
 
-    ko.applyBindings(new AccountViewModel());
+    ko.applyBindings(new RegisterViewModel());
 
 });
 

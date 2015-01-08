@@ -12,14 +12,6 @@
         @{
             var user = ((SearchCollection.Models.SRUser)Session["SRUser"]);
         }
-
-        @if (user != null)
-        {
-
-            <ul class="nav navbar-link navbar-left">
-                <li><a href="javascript:void(0);"><u>@user.FirstName @user.LastName - <small>@user.Email</small></u></a></li>
-            </ul>
-        }
         <ul class="nav navbar-inverse  navbar-right">
             @if (((SearchCollection.Models.SRUser)Session["SRUser"]) == null)
             {
@@ -35,6 +27,14 @@
         {
             <ul class="nav navbar-inverse navbar-right">
                 <li role="presentation"><a href="@Url.Action("register","searchcollection")">Register</a></li>
+            </ul>
+        }
+        
+        @if (user != null)
+        {
+
+            <ul class="nav navbar-link navbar-right">
+                <li><a href="javascript:void(0);"><u>@user.FirstName @user.LastName - <small>@user.Email</small></u></a></li>
             </ul>
         }
         

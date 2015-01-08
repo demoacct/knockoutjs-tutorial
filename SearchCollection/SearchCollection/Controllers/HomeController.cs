@@ -14,7 +14,7 @@ namespace SearchCollection.Controllers
     {
         public ActionResult Index()
         {
-            Session["SRUser"] = null;
+            //Session["SRUser"] = null;
             return View();
         }
 

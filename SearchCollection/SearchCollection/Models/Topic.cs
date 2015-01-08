@@ -15,5 +15,7 @@ namespace SearchCollection.Models
         public string DateCreatedFormatted { get { return this.DateCreated.ToString("MMMM dd, yyyy hh:mm:ss tt"); } }
         public bool Enable { get; set; }
         public string Link { get; set; }
+        public MongoDB.Bson.ObjectId CreatedBy { get; set; }
+        public string User { get; set; }
     }
 }

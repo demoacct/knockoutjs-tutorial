@@ -32,9 +32,21 @@ namespace SearchCollection.Models.Dao
         {
             var all = this.topicCollection.FindAll();
             List<Topic> ret = new List<Topic>();
+            SRUserDao userDao = new SRUserDao();
 
             foreach (var item in all)
             {
+                SRUser user = userDao.Retrieve(item.CreatedBy.ToString());
+
+                if (user != null)
+                {
+                    item.User = user.FirstName + " "+ user.LastName;
+                }
+                else
+                {
+                    item.User = "ADMIN";
+                }
+
                 ret.Add(item);
             }
 
