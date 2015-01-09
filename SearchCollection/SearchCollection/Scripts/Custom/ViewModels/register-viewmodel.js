@@ -30,6 +30,8 @@
                 if (result) {
                     alert("Congratulations! You are successfully registered!")
                     location.href = "/";
+                } else {
+                    alert("Registration failed!");
                 }
 
             });

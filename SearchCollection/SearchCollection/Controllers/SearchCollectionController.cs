@@ -245,5 +245,10 @@ namespace SearchCollection.Controllers
                 throw;
             }
         }
+
+        public ActionResult Tester()
+        {
+            return View();
+        }
     }
 }

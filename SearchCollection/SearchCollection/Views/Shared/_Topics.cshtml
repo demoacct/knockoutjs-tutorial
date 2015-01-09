@@ -2,7 +2,51 @@
     var user = ((SearchCollection.Models.SRUser)Session["SRUser"]);
 }
 
-<table class="table table-hover h6">
+<table class="h6 table-hover table-striped table-condensed table-responsive" data-bind="
+    kendoGrid:
+        {
+            data: Topics,
+            groupable: false,
+            scrollable: false,
+            sortable: true,
+            pageable: { pageSize: 10 },
+            rowTemplate: 'rowTmpl',
+            useKOTemplates: true ,
+            columns:
+                [{ field: 'Title', headerTemplate: 'Title' },
+                { field: 'Description', headerTemplate: 'Description' },
+                { field: 'DateCreatedFormatted', headerTemplate: 'Created On' },
+                { field: 'User', headerTemplate: 'User' },
+                { headerTemplate: '' }]
+        }">
+</table>
+
+<script id="rowTmpl" type="text/html">
+    <tr>
+        <td><a data-bind="attr: { href: Url}"><span data-bind="text: Title"></span></a></td>
+        <td><span data-bind="text: Description"></span></td>
+        <td><span data-bind="text: DateCreatedFormatted"></span></td>
+        @if (user != null)
+        {
+            if (user.Role == SearchCollection.Models.UserRole.ADMIN)
+            {
+                <td><span data-bind="text: User"></span></td>
+                <td style="text-align:center;"><input type="button" data-bind="click: $parent.Delete" value="-" class="btn btn-danger btn-sm"></td>
+            }
+            else
+            {
+                <td></td>
+            }
+        }
+        else
+        {
+            <td></td>
+        }
+    </tr>
+</script>
+
+
+@*<table class="table table-hover h6">
     <thead>
         <tr>
             <th>Title</th>
@@ -41,7 +85,7 @@
             }
         </tr>
     </tbody>
-</table>
+</table>*@
 
 <table class="table table-hover">
     <tbody data-bind="foreach: InsertList">

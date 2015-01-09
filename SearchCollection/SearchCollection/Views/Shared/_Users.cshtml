@@ -1,31 +1,39 @@
-﻿<table class="table table-bordered h6">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Created On</th>
-            <th>Status</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody data-bind="foreach: Users">
-        <tr>
-            <td><span data-bind="text: FirstName"></span></td>
-            <td><span data-bind="text: LastName"></span></td>
-            <td><span data-bind="text: Username"></span></td>
-            <td><span data-bind="text: Password"></span></td>
-            <td><span data-bind="text: DateCreatedFormatted"></span></td>
-            <td><span data-bind="text: StatusStr"></span></td>
-
-            <!-- ko if: StatusStr() === "ACTIVE" -->
-            <td style="text-align:center;"><input type="button" data-bind="click: $parent.Deactivate" class="btn btn-danger btn-sm" value="Deactivate" style="width:100px;"></td>
-            <!-- /ko -->
-            <!-- ko if: StatusStr() === "INACTIVE" -->
-            <td style="text-align:center;"><input type="button" data-bind="click: $parent.Activate" class="btn btn-success btn-sm" value="Activate" style="width:100px;"></td>
-            <!-- /ko -->
-
-        </tr>
-    </tbody>
+﻿<table class="h6 table-hover table-striped table-condensed table-responsive" data-bind="
+    kendoGrid: 
+        { 
+            data: Users, 
+            groupable: false, 
+            scrollable: false, 
+            sortable: true, 
+            pageable: { pageSize: 10 }, 
+            rowTemplate: 'rowTmpl', 
+            useKOTemplates: true ,
+            columns: 
+                [{ field: 'FirstName', headerTemplate: 'First Name' },
+                { field: 'LastName', headerTemplate: 'Last Name' },
+                { field: 'Username', headerTemplate: 'Username' },
+                { field: 'Password', headerTemplate: 'Password' },
+                { field: 'DateCreatedFormatted', headerTemplate: 'Created On' },
+                { field: 'StatusStr', headerTemplate: 'Status' },
+                { headerTemplate: '' }]
+        }">
 </table>
+
+    <script id="rowTmpl" type="text/html">
+    <tr>
+
+        <td><span data-bind="text: FirstName"></span></td>
+        <td><span data-bind="text: LastName"></span></td>
+        <td><span data-bind="text: Username"></span></td>
+        <td><span data-bind="text: Password"></span></td>
+        <td><span data-bind="text: DateCreatedFormatted"></span></td>
+        <td><span data-bind="text: StatusStr"></span></td>
+
+        <!-- ko if: StatusStr() === "ACTIVE" -->
+        <td style="text-align:center;"><input type="button" data-bind="click: $parent.Deactivate" class="btn btn-danger btn-sm" value="Deactivate" style="width:55px;"></td>
+        <!-- /ko -->
+        <!-- ko if: StatusStr() === "INACTIVE" -->
+        <td style="text-align:center;"><input type="button" data-bind="click: $parent.Activate" class="btn btn-success btn-sm" value="Activate" style="width:55px;"></td>
+        <!-- /ko -->
+    </tr>
+</script>

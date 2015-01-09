@@ -1,0 +1,44 @@
+﻿<div data-bind="kendoGrid: { data: items, groupable: true, scrollable: true, sortable: true, pageable: { pageSize: 10 }, rowTemplate: 'rowTmpl', useKOTemplates: true ,
+columns: [{ field: 'id', headerTemplate: 'Id'},{field: 'name', headerTemplate: 'Name'}]}"></div>
+
+<button data-bind="click: addItem">Add Item</button>
+
+@section Scripts{
+
+<script id="rowTmpl" type="text/html">
+    <tr>
+        <td data-bind="text: id"></td>
+        <td>
+            <input data-bind="value: name" />
+        </td>
+        <td>
+            <a href="#" data-bind="click: $root.removeItem">x</a>
+        </td>
+    </tr>
+</script>
+
+    <script>
+
+        $(document).ready(function () {
+            var ViewModel = function () {
+                this.items = ko.observableArray([
+                    { id: "1", name: "apple" },
+                    { id: "2", name: "orange" },
+                    { id: "3", name: "banana" }
+                ]);
+
+                this.addItem = function () {
+                    var num = this.items().length + 1;
+                    this.items.push({ id: num, name: "new" + num });
+                };
+
+                this.RemoveItem = function (item) {
+                    this.items.remove(item);
+                }.bind(this);
+            };
+
+            ko.applyBindings(new ViewModel());
+        });
+
+    </script>
+}

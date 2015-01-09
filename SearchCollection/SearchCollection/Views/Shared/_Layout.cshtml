@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Ranger</title>
+
+    <link rel="stylesheet" href="~/Content/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="~/Content/kendoui/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="~/Content/kendoui/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="~/Content/kendoui/styles/kendo.dataviz.default.min.css" />
+
     @Styles.Render("~/Content/css")
 
 </head>
@@ -11,6 +17,7 @@
     <div class="nav navbar-fixed-top">
         @{
             var user = ((SearchCollection.Models.SRUser)Session["SRUser"]);
+            var radius = "border-top-right-radius:5px;";
         }
         <ul class="nav navbar-inverse  navbar-right">
             @if (((SearchCollection.Models.SRUser)Session["SRUser"]) == null)
@@ -19,6 +26,11 @@
             }
             else
             {
+                if (user.Role == SearchCollection.Models.UserRole.ADMIN)
+                {
+                    radius = "";
+                }
+                
                 <li role="presentation"><a href="@Url.Action("logout","searchcollection")">Logout</a></li>
             }
         </ul>
@@ -47,27 +59,60 @@
             @if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("searchcollection"))
             {
                 <li role="presentation" style="border-top-left-radius:15px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7;@Html.Raw(radius) background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+
+                if (user != null)
+                {
+                    if (user.Role == SearchCollection.Models.UserRole.ADMIN)
+                    {
+                        <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                    }
+                }
             }
             else if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("login") ||
             new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("register"))
             {
                 <li role="presentation" style="border-top-left-radius:15px;box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7;@Html.Raw(radius) background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+
+
+                if (user != null)
+                {
+                    if (user.Role == SearchCollection.Models.UserRole.ADMIN)
+                    {
+                        <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                    }
+                }
             }
             else if (new Uri(Request.Url.AbsoluteUri.ToLower()).Segments.Last().Equals("sruser"))
             {
                 <li role="presentation" style="border-top-left-radius:15px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7;@Html.Raw(radius) background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+
+
+
+                if (user != null)
+                {
+                    if (user.Role == SearchCollection.Models.UserRole.ADMIN)
+                    {
+                        <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                    }
+                }
             }
             else
             {
                 <li role="presentation" style="border-top-left-radius:15px;box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')" class="active"><a href="@Url.Action("index","home")">Home</a></li>
-                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
-                <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                <li role="presentation" style="box-shadow:-1px 3px 5px #1046a7;@Html.Raw(radius) background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("index","searchcollection")">Collection</a></li>
+
+
+
+                if (user != null)
+                {
+                    if (user.Role == SearchCollection.Models.UserRole.ADMIN)
+                    {
+                        <li role="presentation" style="border-top-right-radius:5px; box-shadow:-1px 3px 5px #1046a7; background-image:url('http://www.infospry.com/img/banner-blue-bg.jpg')"><a href="@Url.Action("sruser","searchcollection")">Users</a></li>
+                    }
+                }
             }
         </ul>
         @RenderBody()
@@ -79,6 +124,13 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/Content/kendoui/js/kendo.all.min.js"></script>
+    <script src="~/Scripts/knockout-3.2.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/knockout-kendo.min.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
