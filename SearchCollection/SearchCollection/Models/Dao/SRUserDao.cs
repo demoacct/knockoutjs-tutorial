@@ -27,16 +27,16 @@ namespace SearchCollection.Models.Dao
             model.Role = UserRole.VISITOR;
             model.Status = ActiveStatus.ACTIVE;
 
-            var user = Retrieve().Where(a => a.Username == model.Username || a.Email == model.Email);
+            //var user = Retrieve().Where(a => a.Username == model.Username || a.Email == model.Email);
 
-            if (user != null)
-            {
-                return false;
-            }
-            else
-            {
+            //if (user != null)
+            //{
+            //    return false;
+            //}
+            //else
+            //{
                 return this.userCollection.Insert(model).Ok;
-            }
+            //}
         }
 
         public List<SRUser> Retrieve()
