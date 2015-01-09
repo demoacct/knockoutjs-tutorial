@@ -1,0 +1,73 @@
+﻿<div id="report">
+    
+    <center><h3>Summary of Collection</h3></center>
+
+    <br />
+
+        <div class="col-md-2">
+            <div class="thumbnail">
+
+                <center><h4>Chart Numero 1</h4></center>
+
+                <div data-role="chart"
+                     data-chart-area="{ background: '' }"
+                     data-tooltip="{ visible: true , template: '${category} - ${value} records' }"
+                     data-legend="{ position: 'bottom' }"
+                     data-series-colors="[ 'red' , 'blue' , 'orange' , 'green' ]"
+                     data-series-defaults="{ type: 'donut', startAngle: 150 }"
+                     data-series="[{
+                                field: 'value',
+                                categoryField: 'name',
+                                visibleInLegendField: 'visibleInLegend',
+                                padding: 10
+                              }]"
+                     data-bind="visible: isVisible,
+                            source: Donut">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="thumbnail">
+
+                <center><h4>Chart Numero 2</h4></center>
+
+                <div data-role="chart"
+                     data-chart-area="{ background: '' }"
+                     data-tooltip="{ visible: true , template: '${category} - ${value} records' }"
+                     data-legend="{ position: 'bottom' }"
+                     data-series-colors="[ 'red' , 'blue' , 'orange' , 'green' ]"
+                     data-series-defaults="{ type: 'bar', startAngle: 150 }"
+                     data-series="[{
+                                field: 'value',
+                                categoryField: 'name',
+                                visibleInLegendField: 'visibleInLegend',
+                                padding: 10
+                              }]"
+                     data-bind="visible: isVisible,
+                            source: Donut">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="thumbnail">
+                <center><h4>Chart Numero 3</h4></center>
+
+                <div data-role="chart"
+                     data-chart-area="{ background: '' }"
+                     data-tooltip="{ visible: true , template: '${category} - ${value} records' }"
+                     data-legend="{ position: 'bottom' }"
+                     data-series-colors="[ 'red' , 'blue' , 'orange' , 'green' ]"
+                     data-series-defaults="{ type: 'line', startAngle: 150 }"
+                     data-series="[{
+                                field: 'value',
+                                categoryField: 'name',
+                                visibleInLegendField: 'visibleInLegend',
+                                padding: 10
+                              }]"
+                     data-bind="visible: isVisible,
+                            source: Donut">
+                </div>
+            </div>
+        </div>
+
+</div>

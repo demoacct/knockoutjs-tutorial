@@ -246,6 +246,18 @@ namespace SearchCollection.Controllers
             }
         }
 
+        public JsonResult Donut()
+        {
+            try
+            {
+                return Json(topicDao.getUsersTopicGraph(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         public ActionResult Tester()
         {
             return View();

@@ -53,6 +53,38 @@ namespace SearchCollection.Models.Dao
             return ret;
         }
 
+        public List<SRUsersGraph> getUsersTopicGraph()
+        {
+            List<SRUsersGraph> ret = new List<SRUsersGraph>();
+            SRUserDao userDao = new SRUserDao();
+
+            var users = userDao.Retrieve();
+            var topics = this.Retrieve();
+
+            foreach (var item in users)
+            {
+                SRUsersGraph g = new SRUsersGraph
+                {
+                    id = item.IdStr,
+                    name = item.FirstName + " " + item.LastName,
+                    value = topics.Where(a=>a.CreatedBy.ToString() == item.IdStr).Count(),
+                    data = null
+                    //data = topics.Select(a => {
+                    //    return new SRUsersGraphDetail
+                    //    {
+                    //        category = a.DateCreated.ToString("yyyy-MM-dd"),
+                    //        value = topics.Where(b=>b.CreatedBy.ToString() == item.IdStr).Count(),
+                    //        color = item.Color
+                    //    };
+                    //}).ToList()
+                };
+
+                ret.Add(g);
+            }
+
+            return ret;
+        }
+
         public Topic Retrieve(string id)
         {
             ObjectId objId = new ObjectId(id);

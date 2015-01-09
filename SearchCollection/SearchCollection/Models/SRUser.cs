@@ -21,5 +21,6 @@ namespace SearchCollection.Models
         public DateTime LastLogin { get; set; }
         public ActiveStatus Status { get; set; }
         public string StatusStr { get { return this.Status.ToString(); } }
+        public string Color { get; set; }
     }
 }
