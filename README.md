@@ -2,6 +2,7 @@
 Practice knockoutjs implementations.
 
 - knockoutjs
+- knockout-kendo
 - mongodb
 - install mongodb on windows
 - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
